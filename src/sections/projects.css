@@ -1,0 +1,467 @@
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 6vw, 4rem);
+  padding-top: clamp(2rem, 6vw, 3rem);
+  padding-bottom: var(--space-section-y);
+}
+
+.projects__intro {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--space-inline) clamp(1rem, 3vw, 1.5rem);
+}
+
+.projects__heading {
+  margin-top: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.03em;
+}
+
+.project {
+  position: relative;
+  scroll-margin-top: 80px;
+}
+
+.project__number {
+  position: absolute;
+  top: 1.25rem;
+  left: var(--space-card-inset);
+  z-index: 2;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.05em;
+}
+
+.project--clasificador .project__number {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.project__cover {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.project__cover img:first-child {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease);
+}
+
+.project:hover .project__cover img:first-child {
+  transform: scale(1.03);
+}
+
+.project__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0) 45%);
+  pointer-events: none;
+}
+
+.project__title--display,
+.project__title--playful,
+.project__title--hand {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #fff;
+  text-align: center;
+}
+
+.project__title--display {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.25rem, 5vw, 2.5rem);
+  transform: translateX(-50%);
+  width: 90%;
+  font-size: clamp(1.75rem, 5vw, 4rem);
+  line-height: 1.05;
+}
+
+/* bloomeur.mx */
+.project--bloom .project__cover {
+  background: var(--color-beige);
+  padding: clamp(1rem, 3vw, 2rem);
+  border-radius: 20px;
+}
+
+.project--bloom .project__cover img:first-child {
+  border-radius: 12px;
+}
+
+.project--bloom .project__scrim {
+  display: none;
+}
+
+.project--bloom .project__number {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.project--bloom .project__title--display {
+  left: 50%;
+  bottom: auto;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  text-align: left;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+}
+
+.project__gallery {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  gap: clamp(1rem, 3vw, 2rem);
+  margin-top: clamp(1rem, 3vw, 1.5rem);
+  padding: clamp(2rem, 5vw, 3rem) var(--space-card-inset);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.project--bloom .project__gallery {
+  background: #b17b61;
+}
+
+.project--clasificador .project__gallery {
+  background: #cb8945;
+}
+
+.project__gallery::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.project__gallery-item {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  cursor: default;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity var(--duration-slow) var(--ease), transform var(--duration-slow) var(--ease);
+}
+
+.reveal--visible .project__gallery-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project__gallery-item:nth-child(1) {
+  transition-delay: 0.05s;
+}
+
+.project__gallery-item:nth-child(2) {
+  transition-delay: 0.15s;
+}
+
+.project__gallery-item:nth-child(3) {
+  transition-delay: 0.25s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project__gallery-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+a.project__gallery-item {
+  cursor: pointer;
+}
+
+.project__gallery-item img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform var(--duration-base) var(--ease);
+}
+
+.project--bloom .project__gallery-item:nth-child(1) img {
+  aspect-ratio: 3 / 4;
+}
+
+.project--bloom .project__gallery-item:nth-child(2) img {
+  aspect-ratio: 1 / 1;
+}
+
+.project--bloom .project__gallery-item:nth-child(3) img {
+  aspect-ratio: 4 / 5;
+}
+
+.project--clasificador .project__gallery-item:nth-child(1) img {
+  aspect-ratio: 1 / 1;
+}
+
+.project--clasificador .project__gallery-item:nth-child(2) img {
+  aspect-ratio: 4 / 5;
+}
+
+.project--clasificador .project__gallery-item:nth-child(3) img {
+  aspect-ratio: 3 / 4;
+}
+
+a.project__gallery-item:hover img,
+a.project__gallery-item:focus-visible img {
+  transform: translateY(-4px);
+}
+
+.project__gallery-item span {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+/* Tarjeta "info" con animación de flip */
+.project__flip {
+  width: 100%;
+  cursor: pointer;
+}
+
+.project__flip:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+  border-radius: 10px;
+}
+
+.project__flip-inner {
+  position: relative;
+  width: 100%;
+  transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.project__flip:not(.is-flipped):hover .project__flip-inner {
+  transform: translateY(-4px);
+}
+
+.project__flip:not(.is-flipped):active .project__flip-inner {
+  transform: scale(0.97);
+}
+
+.project__flip.is-flipped .project__flip-inner {
+  transform: rotateY(180deg);
+}
+
+.project__flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 10px;
+}
+
+.project__flip-face--front {
+  display: block;
+}
+
+.project__flip-face--front img {
+  transform: none !important;
+}
+
+.project__flip-face--back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.project__flip-glass {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: clamp(1rem, 5vw, 1.5rem);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.project__flip-label {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.7rem, 2vw, 0.8rem);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--eyebrow-color);
+}
+
+.project__flip-text {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  font-weight: 400;
+  font-size: clamp(0.9rem, 3vw, 1.05rem);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: #1c1c1e;
+}
+
+.project--bloom .project__flip-label {
+  color: var(--color-terracotta);
+}
+
+.project--clasificador .project__flip-label {
+  color: var(--color-yellow-deep);
+}
+
+.project--techwork .project__flip-label {
+  color: var(--color-purple-deep);
+}
+
+@media (max-width: 560px) {
+  .project__flip-label {
+    display: none;
+  }
+
+  .project__flip-glass {
+    padding: 0.9rem;
+  }
+
+  .project__flip-text {
+    font-size: 0.8rem;
+    line-height: 1.35;
+  }
+}
+
+.project--nodo .project__flip-label {
+  color: var(--color-brown-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project__flip-inner {
+    transition: none;
+  }
+}
+
+/* Súper Clasificador */
+.project--clasificador .project__cover {
+  background: var(--color-yellow-pastel);
+  padding: clamp(1rem, 3vw, 2rem);
+  border-radius: 20px;
+}
+
+.project--clasificador .project__cover img:first-child {
+  border-radius: 12px;
+}
+
+.project--clasificador .project__title--display {
+  left: 50%;
+  bottom: auto;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  text-align: left;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Cursos Techwork */
+.project--techwork .project__cover {
+  background: #759cb8;
+  padding: clamp(1rem, 3vw, 2rem);
+  border-radius: 20px;
+}
+
+.project--techwork .project__cover img:first-child {
+  border-radius: 12px;
+}
+
+.project--techwork .project__title--display {
+  left: 50%;
+  bottom: auto;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  text-align: left;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+}
+
+.project--techwork .project__gallery {
+  background: var(--color-purple-deep);
+}
+
+.project--techwork .project__gallery-item:nth-child(1) img {
+  aspect-ratio: 3 / 4;
+}
+
+.project--techwork .project__gallery-item:nth-child(2) img {
+  aspect-ratio: 1 / 1;
+}
+
+.project--techwork .project__gallery-item:nth-child(3) img {
+  aspect-ratio: 4 / 5;
+}
+
+/* NODO */
+.project--nodo .project__cover {
+  background: var(--color-brown-pastel);
+  padding: clamp(1rem, 3vw, 2rem);
+  border-radius: 20px;
+}
+
+.project--nodo .project__cover img:first-child {
+  border-radius: 12px;
+}
+
+.project--nodo .project__number {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.project__title--hand {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  font-size: clamp(3rem, 10vw, 6rem);
+  line-height: 1;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+}
+
+.project--nodo .project__gallery {
+  background: #adb8d3;
+}
+
+.project--nodo .project__gallery-item:nth-child(1) img {
+  aspect-ratio: 3 / 4;
+}
+
+.project--nodo .project__gallery-item:nth-child(2) img {
+  aspect-ratio: 4 / 5;
+}
+
+.project--nodo .project__gallery-item:nth-child(3) img {
+  aspect-ratio: 1 / 1;
+}

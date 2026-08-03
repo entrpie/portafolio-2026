@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fridaescamilla.vercel.app/sitemap.xml

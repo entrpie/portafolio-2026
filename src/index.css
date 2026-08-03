@@ -1,0 +1,189 @@
+/*
+  Alte Haas Grotesk y Pecita no están disponibles en Google Fonts.
+  Si quieres la tipografía exacta del diseño, coloca los archivos .woff2
+  en public/fonts/ y descomenta los bloques @font-face correspondientes.
+*/
+/*
+@font-face {
+  font-family: 'Alte Haas Grotesk';
+  src: url('/fonts/AlteHaasGroteskRegular.woff2') format('woff2');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Alte Haas Grotesk';
+  src: url('/fonts/AlteHaasGroteskBold.woff2') format('woff2');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Pecita';
+  src: url('/fonts/Pecita.woff2') format('woff2');
+  font-weight: 400;
+}
+*/
+
+:root {
+  --font-body: 'Alte Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Montserrat', sans-serif;
+  --font-playful: 'Mystery Quest', cursive;
+  --font-hand: 'Pecita', 'Segoe Print', cursive;
+
+  --color-bg: #ffffff;
+  --color-text: #000000;
+  --color-green: #cde2a6;
+  --color-yellow: #ffe70c;
+  --color-beige: #ece9e3;
+  --color-terracotta: #bc785d;
+  --color-red: #b04545;
+  --color-red-bright: #c84a4a;
+  --color-yellow-pastel: #f6e7b4;
+  --color-yellow-deep: #dba53f;
+  --color-purple-pastel: #ddcbf2;
+  --color-purple-deep: #8a6bb0;
+  --color-brown-pastel: #e3d2bb;
+  --color-brown-deep: #8b6449;
+
+  /* Altura del navbar fijo, usada para no encimarlo con el contenido debajo */
+  --navbar-h: 3.375rem;
+
+  /* Ritmo de espaciado compartido por todas las secciones */
+  --space-inline: clamp(1.5rem, 6vw, 4rem);
+  --space-section-y: clamp(3rem, 8vw, 5rem);
+  /* Margen desde el borde de una tarjeta a pantalla completa (portadas de proyecto) */
+  --space-card-inset: clamp(1.25rem, 5vw, 3rem);
+
+  /* Misma curva/velocidad de animación en todo el sitio */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 0.2s;
+  --duration-base: 0.3s;
+  --duration-slow: 0.5s;
+
+  /* Estilo único de "eyebrow" (etiqueta pequeña sobre un título) */
+  --eyebrow-size: 0.8rem;
+  --eyebrow-tracking: 0.12em;
+  --eyebrow-color: #888;
+
+  color-scheme: light;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --navbar-h: 4.0625rem;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-red);
+  outline-offset: 3px;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  letter-spacing: -0.02em;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+#root {
+  position: relative;
+}
+
+/* Eyebrow: misma etiqueta pequeña sobre cada título de sección en todo el sitio */
+.eyebrow {
+  font-size: var(--eyebrow-size);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--eyebrow-tracking);
+  color: var(--eyebrow-color);
+}
+
+/* Link con subrayado que "barre" de izquierda a derecha — mismo gesto en todo el sitio,
+   el color siempre lo define el elemento que lo usa (currentColor) */
+.u-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.u-link.is-active::after {
+  right: 0;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
+.u-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -2px;
+  height: 1.5px;
+  background: currentColor;
+  transition: right var(--duration-base) var(--ease);
+}
+
+.u-link:hover::after,
+.u-link:focus-visible::after {
+  right: 0;
+}
+
+/* Textura de grano global: firma visual consistente sobre todo el sitio */
+#root::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
