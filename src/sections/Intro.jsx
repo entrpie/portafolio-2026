@@ -5,7 +5,6 @@ import Reveal from '../components/Reveal'
 import { MailIcon, ChatIcon } from '../components/icons'
 import './intro.css'
 
-// Reemplaza '#' con el enlace real al PDF del currículum (ej. subido a /public/cv.pdf).
 const CV_URL = 'https://drive.google.com/file/d/18FUFsMkA4GVnRlE_gHG6VTj-0qZdJshf/view?usp=sharing'
 const GMAIL_URL = 'https://mail.google.com/mail/?view=cm&fs=1&to=frida.escamilla.ol@usb.edu.mx'
 const WHATSAPP_URL = 'https://wa.me/525584480887'
@@ -98,9 +97,9 @@ function Intro() {
             <div className="intro__row">
               <dt>¿Quién soy?</dt>
               <dd>
-                Soy estudiante de Tecnologías de la Información en los Negocios y me apasiona el desarrollo fullstack y el diseño UX/UI porque creo en la conexión de la tecnología con las personas a través de interfaces funcionales y atractivas para la creacion de espacios y experiencias únicas. 
+                Soy estudiante de Tecnologías de la Información en los Negocios y me apasiona el desarrollo fullstack y el diseño UX/UI porque creo en la conexión de la tecnología con las personas a través de interfaces funcionales y atractivas para la creación de espacios y experiencias únicas.
 
-Cuento con una fuerte criterio visual, pero mi formación me da la flexibilidad para adaptarme a diferentes rubros de mi carrera, como el análisis de datos, programación y estrategias de negocios. Busco encontar soluciones desde la intersección de la lógica, la practicidad y la estética. 
+Cuento con un fuerte criterio visual, pero mi formación me da la flexibilidad para adaptarme a diferentes rubros de mi carrera, como el análisis de datos, programación y estrategias de negocios. Busco encontrar soluciones desde la intersección de la lógica, la practicidad y la estética.
               </dd>
             </div>
           </dl>
