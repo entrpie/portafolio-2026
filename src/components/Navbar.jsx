@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import './navbar.css'
 
 const LINKS = [
@@ -10,11 +10,26 @@ const LINKS = [
 function Navbar() {
   const [open, setOpen] = useState(false)
   const [activeHash, setActiveHash] = useState('')
+  const navRef = useRef(null)
 
   useEffect(() => {
     document.body.classList.toggle('nav-open', open)
     return () => document.body.classList.remove('nav-open')
   }, [open])
+
+  useLayoutEffect(() => {
+    const nav = navRef.current
+    if (!nav) return
+
+    const setNavbarHeight = () => {
+      document.documentElement.style.setProperty('--navbar-h', `${nav.offsetHeight}px`)
+    }
+
+    setNavbarHeight()
+    const observer = new ResizeObserver(setNavbarHeight)
+    observer.observe(nav)
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     const sections = LINKS.map((link) => document.querySelector(link.href)).filter(Boolean)
@@ -35,7 +50,7 @@ function Navbar() {
   }, [])
 
   return (
-    <header className="navbar">
+    <header className="navbar" ref={navRef}>
       <nav className="navbar__inner">
         <p className="navbar__school">Universidad Simón Bolívar</p>
 
